@@ -15,18 +15,31 @@ TODO:
 i.e. e.g. if you want to create a txt file of matches, the format should be something like
 
 Match :1
+
 Team :Real Madrid
+
 Team :Barcelona
+
 Result :3-0
+
 Player :messi
+
 minutes :90
+
 goals :0
+
 tackles :5
+
 dribbles :19
+
 player :Kroos
+
 minutes :90
+
 goals :2
+
 tackles :7
+
 dribbles :11
 
 
