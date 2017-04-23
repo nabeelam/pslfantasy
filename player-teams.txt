@@ -1,0 +1,39 @@
+Team :Barcelona
+
+player :messi:1900
+player :alves:1100
+player :adriano:1000
+player :iniesta:1600
+player :xavi:1600
+
+Team :Real Madrid
+
+player :ronaldo:1800
+player :kaka:1500
+player :ozil:1200
+player :ramos:1300
+player :casillas:1400
+
+Team :Atletico Madrid
+
+player :griezman:1500
+player :luis:800
+player :godin:900
+player :juanfran:1100
+player :torres:600
+
+Team :Chelsea
+
+player :drogba:1200
+player :lampard:1300
+player :ballack:1200
+player :makelele:1400
+player :terry:1300
+
+Team :Manchester United
+
+player :scholes:1300
+player :tevez:1000
+player :rooney:1200
+player :mata:1000
+player :ferdinand:1200
