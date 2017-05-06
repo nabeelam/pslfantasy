@@ -1,0 +1,19 @@
+
+players 
+-> prices
+-> descritption
+-> pics
+
+//pages
+sign up
+sign in
+error
+
+buying portal
+	player info
+selling portal
+fixtures and results
+view info
+points table
+
+commentary
