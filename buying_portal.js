@@ -8,16 +8,16 @@ $(() => {
 		console.log(data)
 		d = data.split(':')
 		for (let i = 0; i < 5; i++) {
-			for (let j = 1; j <= 5; j++) {
-				move('m' + i + (j - 1), d[6*i + j])
+			for (let j = 1; j <= 11; j++) {
+				move('m' + i + (j - 1), d[12*i + j])
 			}
-			move('m' + i, d[6*i])			
+			move('m' + i, d[12*i])			
 		}
 		for (let i = 0; i < 5; i++) {
-			for (let j = 0; j < 5; j++) {
+			for (let j = 0; j < 11; j++) {
 				a = '#m' + i + j
 				$(a).click(() => {
-					socketio.emit('tried_to_buy', i + ':' + j)
+					socketio.emit('player_info', i + '_' + j)
 				})
 			}
 		}
@@ -28,12 +28,12 @@ $(() => {
 	$('#SellingPortal').click(() => {
 		socketio.emit('selling_portal', '')
 	});		
-	socketio.on('Bought', data => {
-		d = data.split(':')
-		i = Number(d[0])
-		j = Number(d[1])
-		move('m' + i + j, 'Bought')
-	})
+	$('#FixRes').click(() => {
+		socketio.emit('fixtures_and_results', '')
+	});		
+	$('#PointsTable').click(() => {
+		socketio.emit('points_table', '')
+	});	
 	function move(i, x) {
 		console.log(i, x)
 		document.getElementById(i).innerHTML = x

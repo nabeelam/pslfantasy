@@ -4,10 +4,10 @@ const http = require('http')
 const jade = require('jade')
 var mongo = require('mongodb')
 var assert = require('assert')
-const url = 'mongodb://localhost:27017/the-fantasy-league'
+const url = 'mongodb://localhost:27017/200'
 
 const lineReader = require('line-reader');
-
+ 
 function insert_in_db(coll, item) {
 	mongo.connect(url, function(err, db) {
 		assert.equal(null, err)
@@ -30,10 +30,12 @@ function find_one_in_db(coll, item, callback) {
 	});
 }
 
-function find_all_in_db(coll, item, callback1, callback2) {
+function find_all_in_db(coll, item, srt, callback1, callback2) {
 	mongo.connect(url, function(err, db) {
 		assert.equal(null, err)
+		console.log(srt)
 		var cursor = db.collection(coll).find(item)
+		cursor.sort(srt)
 		cursor.forEach(function(doc, err) {
 			assert.equal(null, err)
 			callback1(doc)
@@ -43,6 +45,7 @@ function find_all_in_db(coll, item, callback1, callback2) {
 		})		
 	});	
 }
+
 function remove_from_db(coll, item) {
 	mongo.connect(url, function(err, db) {
 		assert.equal(null, err)
@@ -116,8 +119,56 @@ function populate_teams() {
 		})
 	});	
 }
+function dbg_stats(p, rs, bp, rc, bd, w) {
+	console.log('set player ' + p + ' runsS to ' + rs + ' ballP to ' + bp + ' runsC to ' + rc + ' ballD to ' + bd + ' wicks to ' + w)
+}
+function get_points(RS, BP, RC, BD, W) {
+	return RS * (RS/BP) - RC * (RC/(2*BD)) + 15 * W
+}
+// function update_stats_users() {
+// 	find_all_in_db('User', {}, {},  function(doc) {
+// 		item = {
+// 			user : doc.handle
+// 		}
+// 		points = 0
+// 		find_all_in_db('User-Player', item, srt,  function(doc) {
+// 			new_item = {
+// 				player : doc.player
+// 			}
+// 			find_one_in_db('Player', new_item, function(doc) {
+// 				points += doc.points
+// 			})
+// 		}, function() {})	
+// 	}, function() {
+// 		change = {$inc : {points : points}}
+// 		modify_in_db('Player', item, change)		
+// 	})	
+// }
+
+function update_stats_player(data) {
+	for(i = 0; i < data.length; i++) {
+		info = data[i].split(':')
+		item = {
+			player : info[0]
+		}
+		change = {$inc: {runs_scored : Number(info[1])}}
+		modify_in_db('Player', item, change)	
+		change = {$inc: {balls_played : Number(info[2])}}
+		modify_in_db('Player', item, change)
+		change = {$inc: {runs_conceded : Number(info[3])}}
+		modify_in_db('Player', item, change)
+		change = {$inc: {balls_delivered : Number(info[4])}}
+		modify_in_db('Player', item, change)
+		change = {$inc: {wickets : Number(info[5])}}
+		modify_in_db('Player', item, change)
+		p = get_points(Number(info[1]), Number(info[2]), Number(info[3]), Number(info[4]), Number(info[5]))
+		change = {$inc : {points : p}}
+		modify_in_db('Player', item, change)
+	}
+}
 
 populate_teams()
+
 const server = http.createServer((request, response) => {
     if (request.url === '/login.js') {
         fs.readFile('login.js', 'utf-8', (err, data) => response.end(data))
@@ -127,7 +178,13 @@ const server = http.createServer((request, response) => {
         fs.readFile('buying_portal.js', 'utf-8', (err, data) => response.end(data))
     } else if (request.url === '/selling_portal.js') {
         fs.readFile('selling_portal.js', 'utf-8', (err, data) => response.end(data))
-    } else if(request.url === '/view_info.jade') {
+    } else if (request.url === '/player_info.js') {
+        fs.readFile('player_info.js', 'utf-8', (err, data) => response.end(data))
+    } else if (request.url === '/fixtures_and_results.js') {
+        fs.readFile('fixtures_and_results.js', 'utf-8', (err, data) => response.end(data))
+    } else if (request.url === '/points_table.js') {
+        fs.readFile('points_table.js', 'utf-8', (err, data) => response.end(data))    	 
+	} else if(request.url === '/view_info.jade') {
         fs.readFile('view_info.jade', 'utf-8', (err, data) => {
             response.end(jade.compile(data)())
         })    	
@@ -137,6 +194,20 @@ const server = http.createServer((request, response) => {
         })
     } else if(request.url === '/selling_portal.jade') {
         fs.readFile('selling_portal.jade', 'utf-8', (err, data) => {
+            response.end(jade.compile(data)())
+        })
+    } else if(request.url.substring(0, 13) === '/player_info_') {
+        fs.readFile('player_info.jade', 'utf-8', (err, data) => {
+            response.end(jade.compile(data)())		
+		})
+    } else if(request.url === '/fixtures_and_results.jade') {
+    	console.log('Sent fixtures_and_results')
+        fs.readFile('fixtures_and_results.jade', 'utf-8', (err, data) => {
+            response.end(jade.compile(data)())
+        })
+    } else if(request.url === '/points_table.jade') {
+    	console.log('Sent points_table')
+        fs.readFile('points_table.jade', 'utf-8', (err, data) => {
             response.end(jade.compile(data)())
         })
     } else if(request.url === '/favicon.ico') {}
@@ -153,6 +224,23 @@ server.listen(PORT, () => {
 })
 user_list = {}
 io.sockets.on('connection', socket => {
+
+	socket.on('player_match_data', function (data) {
+		update_stats_player(data)
+	});
+	socket.on('data_parser_connecting', function (data) {
+		data = ''
+		item = {}
+		srt = {
+			'match_id' : 1
+		}
+		find_all_in_db('Matches', item, srt,  function(doc) {
+			data += doc.match_id + '@' + doc.date + '\n'
+		}, function() {
+    		socket.emit('sending_match_data', data)
+		})	
+	});
+
 	socket.on('sign_in', data => {
 		arr = data.split(',')
 		var item = {
@@ -173,7 +261,8 @@ io.sockets.on('connection', socket => {
 		var item = {
 			handle : arr[0],
 			password : arr[1],
-			Budget : 5000
+			Budget : 15000, 
+			points : 0
 		}
 		insert_in_db('User', item)
 		user_list[socket] = item		
@@ -189,6 +278,15 @@ io.sockets.on('connection', socket => {
 	socket.on('selling_portal', data => {
 		socket.emit('redirect', '/selling_portal.jade')	
 	})
+	socket.on('player_info', data => {
+		socket.emit('redirect', '/player_info_' + data + '.jade')	
+	})
+	socket.on('fixtures_and_results', data => {
+		socket.emit('redirect', '/fixtures_and_results.jade')	
+	})	
+	socket.on('points_table', data => {
+		socket.emit('redirect', '/points_table.jade')	
+	})		
 	socket.on('view_info_is_up', data => {
 		data = ''
 		data += 'handle is ' + user_list[socket].handle + ':'
@@ -197,7 +295,7 @@ io.sockets.on('connection', socket => {
 		item = {
 			user : user_list[socket].handle
 		}
-		find_all_in_db('User-Player', item, function(doc) {
+		find_all_in_db('User-Player', item, {}, function(doc) {
 			data += doc.player + ':'
 		}, function() {
 			socket.emit('user-info', data)
@@ -219,17 +317,72 @@ io.sockets.on('connection', socket => {
 	socket.on('selling_portal_is_up', data => { 
 		data = ''
 		data += user_list[socket].handle + ':'
+		console.log('selling_portal')
 		item = {
 			user : user_list[socket].handle
 		}
-		find_all_in_db('User-Player', item, function(doc) {
+		find_all_in_db('User-Player', item, {}, function(doc) {
+			console.log(doc.player)
 			data += doc.player + ':'
 		}, function() {
-			socket.emit('Selling_portal', data)
+			socket.emit('selling_portal', data)
 		})
+	}) 
+	socket.on('player_info_is_up', data => { 
+		arr = data.split('_')
+		console.log(arr)
+		team = teams[Number(arr[0])]
+		console.log(team.name)
+		p = team.players[Number(arr[1])]
+		item = {
+			player : p.name
+		}
+		find_one_in_db('Player', item, function(doc) {
+			econ = 0.00
+			if(Number(doc.balls_delivered) > 0) {
+				econ = Number(doc.runs_conceded)/Number(doc.balls_delivered)
+				econ = econ * 6
+			}
+			strike_rate = Number(doc.runs_scored)/Number(doc.balls_played)
+			strike_rate = strike_rate * 100
+			data = p.name + ':price ' +	doc.price + ':wickets taken ' + doc.wickets
+			data += ':Economy rate '+ econ + ':runs conceded ' + doc.runs_conceded
+			data += ':runs scored ' + doc.runs_scored + ':strike_rate ' + strike_rate
+			socket.emit('player_info', data)
+		})	
+	}) 	
+	socket.on('fixtures_and_results_is_up', data => { 
+		data = ''
+		item = {}
+		srt = {
+			match_id : 1
+		}
+		find_all_in_db('Matches', item, srt, function(doc) {
+			data += 'Match ' + doc.match_id + ' : '
+			data += doc.date + ' '
+			data += doc.detail + ' '
+			data += doc.Result + '|'
+		}, function() {
+			socket.emit('fixtures_and_results', data)
+		})		
+	}) 		
+	socket.on('fixtures_and_results_is_up', data => { 
+		data = ''
+		item = {}
+		srt = {
+			match_id : 1
+		}
+		find_all_in_db('Matches', item, srt, function(doc) {
+			data += 'Match ' + doc.match_id + ' : '
+			data += doc.date + ' '
+			data += doc.detail + ' '
+			data += doc.Result + '|'
+		}, function() {
+			socket.emit('fixtures_and_results', data)
+		})		
 	}) 	
 	socket.on('tried_to_buy', data => {
-		arr = data.split(':')
+		arr = data.split('_')
 		team = teams[Number(arr[0])]
 		p = team.players[Number(arr[1])]
 		player = p.name
@@ -248,7 +401,11 @@ io.sockets.on('connection', socket => {
 				user_list[socket].Budget -= price					
 				change = {$inc: {Budget: -price}}
 				modify_in_db('User', item, change)
-				socket.emit('Bought', data)
+				socket.emit('redirect', '/view_info.jade')
+			} else if(price > budget) {
+				socket.emit('could not buy', 'price less than budget')
+			} else {
+				socket.emit('could not buy', 'you already own this player')				
 			}
 		})
 	})

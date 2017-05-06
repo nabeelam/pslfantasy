@@ -4,7 +4,7 @@ $(() => {
 	socketio.on('redirect', function(destination) {
 	    window.location.href = destination;
 	});	
-	socketio.on('Selling_portal', data => {
+	socketio.on('selling_portal', data => {
 		console.log(data)
 		d = data.split(':')
 		plyrL = []
@@ -14,7 +14,7 @@ $(() => {
 			plyrL.push(d[j])
 		}
 		move('m' + i, d[0])			
-		for (let j = 0; j < 5; j++) {
+		for (let j = 0; j < 11; j++) {
 			a = '#m' + i + j
 			$(a).click(() => {
 				console.log("tried to sell " + plyrL[j])
@@ -28,6 +28,12 @@ $(() => {
 	$('#BuyingPortal').click(() => {
 		socketio.emit('buying_portal', '')
 	});		
+	$('#FixRes').click(() => {
+		socketio.emit('fixtures_and_results', '')
+	});
+	$('#PointsTable').click(() => {
+		socketio.emit('points_table', '')
+	});					
 	socketio.on('Sold', data => {
 		i = 0
 		j = find_in_ls(plyrL, data)
