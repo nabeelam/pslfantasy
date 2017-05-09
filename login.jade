@@ -1,0 +1,15 @@
+doctype html
+html
+	head
+		script(src='//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js')
+		script(src='/socket.io/socket.io.js')
+		script(src='login.js')
+	body
+		<hr/> username 
+		input(type='text', id='username')
+		<hr/> password 
+		input(type='text', id='password')
+		<hr/>
+		button(id='signIn') sign in		
+		<hr/>		
+		button(id='signUp') sign up		
