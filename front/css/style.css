@@ -1,0 +1,131 @@
+body {
+  background: #344;
+  color: #ddd;
+}
+
+/*colors*/
+/*443344*/
+/*4f484f*/
+/*344*/
+
+.button {
+  border-radius: 0px; /*curve*/
+  margin-right: 2rem;
+}
+
+.button.team-btn {
+  width: 200px;
+  text-align: left;
+  background-color: #443344;
+  color: #ddd;
+  font-size: 0.8em;
+  border-radius: 0px;
+  border-color: #434;
+}
+
+.button.team-btn:hover {
+  background-color: #443344;
+  color: #fff;
+  border-color: #434;
+}
+
+.button.plyr-btn {
+  width: 200px;
+  text-align: left;
+  background-color: #434;
+  color: #ddd;
+  font-size: 0.8em;
+  border-radius: 0px;
+  border-color: #434;
+}
+
+.button.plyr-btn:hover {
+  background-color: #443344;
+  color: #fff;
+  border-color: #434;
+}
+
+/*NAVBAR*/
+nav.primary{
+  display: table;
+  position: sticky;
+  top: 0;
+  background: #4f484f;
+  margin: 10 auto;
+}
+
+nav.primary ul, nav.primary ul li {
+  margin: 0px;
+}
+
+nav.primary select {
+  display: none;
+  width:  100%;
+  height: 28px;
+  margin: 21px 0;
+}
+
+nav.primary ul li {
+  display: inline;
+  float: left;
+  position: relative;
+}
+
+nav.primary ul li a {
+  display: inline-block;
+  line-height: 56px;
+  padding:  0 14px;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  background: ##ccc;
+}
+
+nav.primary ul li a:hover {
+  background: #443344;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/*Jumbotron*/
+
+.jumbotron{
+  background-color: #3e5353;
+  /*background-image: url('images/congruent_pentagon.png');*/
+  height: 150px;
+  /*border: 1px solid #ccc;*/
+}
+.jumbotron p{
+  text-align: center;
+  font-size: 2em;
+  color: #eee;
+  line-height: 150px;
+}
+
+/*Container*/
+.featured{
+  margin-top: 20px;
+  /*background: #444;*/
+  margin-bottom: 20px;
+  text-align: center;
+}
+.featured h2{
+  margin-top: 20px;
+  font-weight: normal;
+}
+.featured p{
+  padding: 20px 0px;
+  margin-bottom: 0;
+}
+
+.teams{
+  padding-top: 20px;
+  background: #4f484f;
+  text-align: left;
+}
+
+.teamlist{
+  list-style: none outside none;
+}
