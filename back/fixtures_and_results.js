@@ -4,9 +4,11 @@ $(() => {
 	socketio.on('redirect', function(destination) {
 	    window.location.href = destination;
 	});	
+	x = 0
 	socketio.on('fixtures_and_results', data => {
-		console.log(data)
 		arr = data.split('|')
+		console.log('got data' + x)
+		x++
 		for(i = 0; i < arr.length; i++) {
 			$('#f_and_r').append('<hr/>' + arr[i])
 		}

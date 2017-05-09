@@ -7,7 +7,7 @@ $(() => {
 		socketio.emit('sign_in', $('#username').val() + ',' + $('#password').val())
 	});
 	$('#signUp').click(() => {
-		socketio.emit('sign_up', $('#username').val() + ',' + $('#password').val())
+		socketio.emit('trying_to_sign_up', '')
 	});
 })
 

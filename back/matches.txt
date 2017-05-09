@@ -15,6 +15,6 @@
 15:Karachi Kings v Quetta Gladiators:30/11/4/5/2017
 16:Lahore Qalandars v Peshawar Zalmi:30/11/4/5/2017
 17:Islamabad United v Quetta Gladiators:30/11/4/5/2017
-18:Karachi Kings v Lahore Qalandars:30/11/4/5/2017
-19:Peshawar Zalmi v Quetta Gladiators:30/11/4/5/2017
-20:Islamabad United v Karachi Kings:58/20/6/5/2017
+18:Karachi Kings v Lahore Qalandars:20/12/8/5/2017
+19:Peshawar Zalmi v Quetta Gladiators:22/12/8/5/2017
+20:Islamabad United v Karachi Kings:24/12/8/5/2017

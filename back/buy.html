@@ -10,9 +10,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link rel="stylesheet" href="../front/css/normalize.css">
-  <link rel="stylesheet" href="../front/css/skeleton.css">
-  <link rel="stylesheet" href="../front/css/style.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="../images/favicon.png">
   <script src="https://use.fontawesome.com/84b8e3cd0c.js"></script>
 
@@ -21,7 +21,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="buying_portal.js"></script>
-    <script src="../front/app.js"></script>
 
 
 </head>
@@ -33,10 +32,11 @@
       <nav class="container primary">
           <div class="sixteen columns">
               <ul>
-                  <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-                  <li><a href="views/buy.html">Buy/Sell</a></li>
-                  <li><a href="views/browse.html">Browse Players</a></li>
-                  <li><a href="views/table.html">League Table</a></li>
+                  <li><a href="profile.html" id="PersonalInfo"><i class="fa fa-home"></i></a></li>
+                  <li><a href="views/buy.html" id="BuyingPortal">Buy</a></li>
+                  <li><a href="views/sell.html" id="SellingPortal">Sell</a></li>
+                  <li><a href="views/fixtures.html" id="FixRes">Fixtures</a></li>
+                  <li><a href="views/table.html" id="PointsTable">League Table</a></li>
               </ul>
           </div>
       </nav>
@@ -57,21 +57,41 @@
   <div class="container teams">
       <div class ="row" ng-controller="myC">
         <div class="four columns">
+        
+        <!--<li ng-repeat="n in range(100,500,100)">
+        <li><input class="button team-btn" ng-click="toggle(n)" type="button" value="{{n}}" id="{{n}}">
+        </li>-->
         <ul class="teamlist">
-        <li ng-repeat="n in range(100,500,100)">
-        <input class="button team-btn" ng-click="toggle(n)" type="button" value="{{n}}" id="{{n}}">
-        </li>
+        <li><button class="button team-btn" type="button" id="1">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="2">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="3">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="4">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="5">Hello</button></li>
         </ul>
         </div>
 
       <div class="four columns">
-        <div ng-show="{activeTeam || 100}">
+        <!--<div ng-show="{activeTeam || 100}">
         <ol class="teamlist">
         <li ng-repeat="m in range(1, 11)">
-        <input class="button team-btn" type="button" value="{{activeTeam + m}}" id="{{activeTeam + m}}">
-        </li>
+        <li><button class="button team-btn" type="button" value="{{activeTeam + m}}" id="{{activeTeam + m}}">
+        Hello</button></li>
         </ol>
-        </div>
+        </div>-->
+
+      <ol class="teamlist">
+        <li><button class="button team-btn" type="button" id="6">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="7">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="8">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="9">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="10">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="11">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="12">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="13">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="14">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="15">Hello</button></li>
+        <li><button class="button team-btn" type="button" id="16">Hello</button></li>
+      </ol>
       </div>
     </div>
   </div>

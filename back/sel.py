@@ -142,14 +142,15 @@ def handle_bowling(xpath):
 			players[index].balls_delivered = balls
 			players[index].wickets_taken = s[-2]
 
-def write_to_file(index):
-	data = []
+def write_to_file(index, indata):
+	data = indata
 	fd = open('matches/match' + str(index) + '.txt','w')
 	for player in players:
 		line = player.getString()
-		print(line)
-		data.append(line)
+		line += '\n'
+		data += line
 		fd.write(line)
+	print(data)	
 	socketIO.emit('player_match_data', data)
 	fd.close()
 i = 0
@@ -166,14 +167,15 @@ for mt in match_times:
 		if(now > my_datetime):
 			break
 		time.sleep(1)
-	socketIO.emit("match_started")
-	time.sleep(waitTime)
+	print 'match started'
 	url = "http://www.espncricinfo.com/pakistan-super-league-2016-17/engine/match/" + str(1075986 + i) + ".html"
 	driver.get(url)
+	res = driver.find_elements_by_xpath('''//*[@id="full-scorecard"]/div[1]/div[1]/div[3]''')
+	indata = str(mt.index) + '@' + res[0].text + '@'	
 	handle_batting('''//*[@id="full-scorecard"]/div[2]/div/table[1]''')
 	handle_bowling('''//*[@id="full-scorecard"]/div[2]/div/table[2]''')
 	handle_batting('''//*[@id="full-scorecard"]/div[2]/div/table[3]''')
 	handle_bowling('''//*[@id="full-scorecard"]/div[2]/div/table[4]''')
-	write_to_file(i + 1)
+	write_to_file(i + 1, indata)
 	players = []
 	i += 1
