@@ -1,5 +1,5 @@
 body {
-  background: #344;
+  background-image: url('../images/back.png');
   color: #ddd;
 }
 
@@ -29,13 +29,14 @@ body {
   border-color: #434;
 }
 
-.button.plyr-btn {
-  width: 200px;
-  text-align: left;
+.button.login-btn {
+  width: 180px;
+  margin: 5px;
+  text-align: center;
+  border-radius: 0px;
   background-color: #434;
   color: #ddd;
   font-size: 0.8em;
-  border-radius: 0px;
   border-color: #434;
 }
 
@@ -92,11 +93,24 @@ nav.primary ul li a:hover {
 /*Jumbotron*/
 
 .jumbotron{
-  background-color: #3e5353;
-  /*background-image: url('images/congruent_pentagon.png');*/
+  background-color: #434;
   height: 150px;
   /*border: 1px solid #ccc;*/
 }
+
+.jumbotron.shiny{
+  background-color: #434;
+  height: 150px;
+  margin-bottom: 0;
+  /*border: 1px solid #ccc;*/
+}
+
+.jumbotron.status{
+  margin: 0rem;
+  background-image: url('../images/back.png');
+  height: 80px;
+}
+
 .jumbotron p{
   text-align: center;
   font-size: 2em;
@@ -128,4 +142,13 @@ nav.primary ul li a:hover {
 
 .teamlist{
   list-style: none outside none;
+}
+
+.login {
+  text-align: center;
+}
+
+input[type=username]{
+  margin: auto;
+  color: #000;
 }

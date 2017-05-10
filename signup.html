@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="icon" type="image/png" href="images/favicon.ico">
   <script src="https://use.fontawesome.com/84b8e3cd0c.js"></script>
 
   <!-- ANGULAR -->
@@ -27,6 +27,15 @@
 <body ng-app="myPSL">
 
 <!-- Navigation -->
+  <div class="band navigation">
+      <nav class="container primary">
+          <div class="twelve columns">
+              <ul>
+                  <li><a href="login.html"><i class="fa fa-user-circle"></i>Existing User? Login</a></li>
+              </ul>
+          </div>
+      </nav>
+  </div>
 
 <!-- Jumbotron -->
 <div class="container">
@@ -47,9 +56,9 @@
     <div class ="row">
     <div class="twelve columns">
           <form>
-        <input class="team-in u-half-width" type="text" id="username" placeholder="your username">
-        <input class="team-in u-half-width" type="password" id="pass" placeholder="your strong password">
-        <input class="team-in button team-btn" id="signIn" value="Register">  
+        <input class="team-in u-half-width" type="text" id="username" placeholder="your username"></br>
+        <input class="team-in u-half-width" type="password" id="pass" placeholder="your strong password"></br>
+        <input class="team-in button login-btn" id="signIn" value="Register">  
     </form>
     </div>
   </div>
