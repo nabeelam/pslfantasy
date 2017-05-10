@@ -1,109 +1,113 @@
 # PSL Fantasy League
 
-pre requisites ::
-    server ::
-    mongodb, jade, http, fs, line-reader(some of these might be built-in, watch video to install mongo)
-    data_scraper::
-    selenium(pip install)
-    selenium webchromedriver{download from selenium website}
+Developed in completion of coursework for CS 360, Software Engineering, by Dr. Suleman Shahid at the Lahore University of Management Sciences.
 
-before running server.js, run load_player_teams.js. This will populate the matches, players and teams tables in the db
+PSL Fantasy League is our modest implementation of a fantasy cricket league, in particular the Pakistan Super League. It runs as a client-server interaction in nodeJS.
 
-on the login page if you click sign up, it will create a new account by the handle and 
-the password that you entered. if you click sign in, it will log you in.
+# Features
+* User Signup and Login
+* Data Scraping from ESPN (via Selenium)
+* Buying and Selling Portal
+* Upcoming Fixtures
+* Sorted League table
 
-to run the data_scraper:
-the server needs to be running
-export webdriver.chrome.driver = {full path to the chromedriver binary above}
-python sel.py
 
-In matches.txt, you need to provide the times of all matches. If a time is less than current time, the data_scraper will
-not consider it. For the other matches, it will wait till there is time for a match, after a match starts it will wait for
-the match to end(waiting time is 2 minutes for testing, 4 hours in reality). It will then scrape data for that match and
-send it to the server.
-We assume that no two matches take place at the same  time. As far as PSL is concerned this assumption is correct.
+# Getting Started
 
-## Getting Started
+You can either play online, roll your own local league, or export this to other cricket leagues.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## 1. Playing Online
+These instructions will help you set up **PSLFantasy** and join our online player database. To run your own iteration, see the next section below.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+**PSLfantasy** runs on ```nodeJS``` [(install)](https://nodejs.org/en/download/) with the additional modules below. You can install these via ```npm```, the standard package manager. 
 
+**Modules to install:**
 ```
-Give examples
+socket.io
+mongoDB
+jade
+line-reader
+```
+
+**Modules that come built-in:**
+```
+fs
+http
 ```
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
+First, install ```nodeJS```[(install)](https://nodejs.org/en/download/).
 
-Say what the step will be
+Next, install the modules above by running ```npm install <module>``` for each. 
 
+For example, to install **socket.io**, run this in your terminal:
 ```
-Give the example
-```
-
-And repeat
-
-```
-until finished
+npm install socketio
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+Now download the *PSLFantasy* repository and navigate to it. For example: 
 
 ```
-Give an example
+cd pslfantasy           // navigates to the folder you downloaded
 ```
 
-### And coding style tests
+Now, let's start the server. Run ```node server.js``` in your terminal.
 
-Explain what these tests test and why
+Finally, browse to ```localhost:12000``` in your browser and sign up!
 
+## 2. Rolling Your Own Local League
+
+This is similar to Step 1 above (Playing with Others), except you must roll your own MongoDB database. For this:
+
+1. Modify the variable ```url``` in ```server.js``` and ```load_player_teams.js``` to point to your own MongoDB database (local or online).
+
+2. Run ```node load_player_teams.js``` **BEFORE** running ```node server.js```. This will populate the matches, players and team data in the database.
+
+3. Navigate to ```localhost:12000``` and begin with a fresh install. 
+
+## 3. Use for Other Cricket Leagues
+
+For this, you need to make three files.
+
+In ```matches.txt```, provide the times of all matches. If a time is less than the current time (in the real world), the data scraper (```scraper.py```) will not consider it. 
+
+The scraper will run regularly until a match occurs (2 minutes for testing, but 4 hours in reality), and scrape data for that match and send it to the server. 
+
+#### Warning:
+*We assume that no two matches take place at the same time. As far as the Pakistan Super League is concerned, this is correct.*
+
+To run the scraper (first ensure the server is running):
 ```
-Give an example
+### 
+    data_scraper::
+    selenium(pip install)
+    selenium webchromedriver
+    export webdriver.chrome.driver
+    python sel.py
 ```
 
-## Deployment
+### Built With
 
-Add additional notes about how to deploy this on a live system
+* [NodeJS](http://nodejs.org): Web framework used.
+* [Skeleton CSS](http://getskeleton.org): Responsive CSS boilerplate.
+* [Selenium](https://seleniumhq.org/): Data scraping and testing.
 
-## Built With
+### Authors
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* Nabeel Ahmed (@nabeelam)
+* Daniyal Jangda (@daniyaljangda)
+* Muhammad Abu Bakar (@MuhammadAbuBakar95)
 
-## Contributing
+### License
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+This project is licensed under the MIT License.
 
-## Versioning
+### Acknowledgments
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* Advisor: Dr. Suleman Shahid
+* Teaching Assistant: Shahroze Tariq
+* CS 360 Course Staff
 
