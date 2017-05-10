@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs-->
+  <meta charset="utf-8">
+  <title>PSL Fantasy</title>
+  <meta name="description" content="PSL Fantasy App">
+  <meta name="author" content="Nabeel Ahmed">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link rel="stylesheet" href="../front/css/normalize.css">
+  <link rel="stylesheet" href="../front/css/skeleton.css">
+  <link rel="stylesheet" href="../front/css/style.css">
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <script src="https://use.fontawesome.com/84b8e3cd0c.js"></script>
+
+  <!-- ANGULAR -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="buying_portal.js"></script>
+    <script src="../front/app.js"></script>
+
+
+</head>
+
+<body ng-app="myPSL">
+
+<!-- Navigation -->
+  <div class="band navigation">
+      <nav class="container primary">
+          <div class="sixteen columns">
+              <ul>
+                  <li><a href="index.html"><i class="fa fa-home"></i></a></li>
+                  <li><a href="views/buy.html">Buy/Sell</a></li>
+                  <li><a href="views/browse.html">Browse Players</a></li>
+                  <li><a href="views/table.html">League Table</a></li>
+              </ul>
+          </div>
+      </nav>
+  </div>
+
+<!-- Jumbotron -->
+<div class="container">
+  <section>
+    <div class="jumbotron">
+      <p>Login/Signup</p>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE SPECIFIC -->
+
+<!-- Containers -->
+  <div class="container login">
+    <div class ="row">
+    <div class="twelve columns">
+          <form>
+        <input class="team-in u-half-width" type="email" placeholder="your username">
+        <input class="team-in u-half-width" type="password" placeholder="your strong password">
+        <input class="team-in button team-btn" type="submit" value="LOGIN OR REGISTER">  
+    </form>
+    </div>
+  </div>
+</body>
+</html>
