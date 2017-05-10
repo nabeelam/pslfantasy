@@ -6,9 +6,9 @@ $(() => {
 	});
 	socketio.on('user-info', data => {
 		arr = data.split(':')
-		$('#handle').html(arr[0])
-		$('#budget').html(arr[1])
-		$('#points').html(arr[2])
+		$('#handle').html('<i class="fa fa-user fa gap"></i> Username: @' + arr[0])
+		$('#budget').html('<i class="fa fa-trophy fa gap"></i> Budget: ' + arr[1])
+		$('#points').html('<i class="fa fa-trophy fa gap"></i> Points: ' + arr[2])
 		for(i = 3; i < arr.length; i++) {
 			console.log(arr[i])
 			$('#players').append(arr[i] + '</br>')

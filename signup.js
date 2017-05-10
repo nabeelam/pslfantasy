@@ -5,7 +5,7 @@ $(() => {
 	});
 	socketio.on('signup_error', function(data) {
 		console.log(data)
-		$('#status').html('<hr/>' + data)
+		$('#status').html(data + '</br>')
 	});
 	$('#signUp').click(() => {
 		socketio.emit('sign_up', $('#username').val() + ',' + $('#pass').val())

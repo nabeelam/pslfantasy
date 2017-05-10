@@ -4,7 +4,7 @@ $(() => {
 	    window.location.href = destination;
 	});
 	socketio.on('login_error', function(data) {
-		$('#status').html('<hr/>' + data)
+		$('#status').html(data + '</br>')
 	});	
 	$('#signIn').click(() => {
 		socketio.emit('sign_in', $('#username').val() + ',' + $('#pass').val())

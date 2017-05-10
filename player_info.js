@@ -6,11 +6,22 @@ $(() => {
 	socketio.on('redirect', function(destination) {
 	    window.location.href = destination;
 	});	
+	// socketio.on('player_info', data => {
+	// 	d = data.split(':')	
+	// 	for (let j = 0; j < d.length; j++) {
+	// 		$('#information').append('</br>' + d[j])
+	// 	}
+	// })
 	socketio.on('player_info', data => {
-		d = data.split(':')	
-		for (let j = 0; j < d.length; j++) {
-			$('#information').append('<hr/>' + d[j])
-		}
+	arr = data.split(':')
+	$('#playername').html(arr[0])
+	$('#playerprice').html(arr[1])
+	$('#playerwickets').html(arr[2])
+	$('#playerecon').html(arr[3])
+	$('#playerrunsconceded').html(arr[4])
+	$('#playerrunsscored').html(arr[5])
+	$('#playerstrike').html(arr[6])
+	$('#playerlastpoints').html(arr[7])
 	})	
 	socketio.on('could not buy', data => {
 		$('#status').html('<hr/>' + data)

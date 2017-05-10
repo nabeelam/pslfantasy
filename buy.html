@@ -30,7 +30,7 @@
 <!-- Navigation -->
   <div class="band navigation">
       <nav class="container primary">
-          <div class="sixteen columns">
+          <div class="twelve columns">
               <ul>
                   <li><a href="profile.html" id="PersonalInfo"><i class="fa fa-home"></i></a></li>
                   <li><a href="buy.html" id="BuyingPortal">Buy</a></li>
@@ -44,24 +44,17 @@
 
 <!-- Jumbotron -->
 <div class="container">
-  <section>
     <div class="jumbotron">
-      <p>Buy Players</p>
+      <p><i class="fa fa-user-plus fa-lg gap"></i>Buy Players</p>
     </div>
-  </section>
 </div>
-
-<!-- PAGE SPECIFIC -->
 
 <!-- Containers -->
   <div class="container teams">
       <div class ="row" ng-controller="myC">
-        <div class="four columns">
-        
-        <!--<li ng-repeat="n in range(100,500,100)">
-        <li><input class="button team-btn" ng-click="toggle(n)" type="button" value="{{n}}" id="{{n}}">
-        </li>-->
+        <div class="six columns">
         <ul class="teamlist">
+        <li><h5>Teams</h5></li>
         <li><button class="button team-btn" type="button" id="1">Hello</button></li>
         <li><button class="button team-btn" type="button" id="2">Hello</button></li>
         <li><button class="button team-btn" type="button" id="3">Hello</button></li>
@@ -70,16 +63,9 @@
         </ul>
         </div>
 
-      <div class="four columns">
-        <!--<div ng-show="{activeTeam || 100}">
-        <ol class="teamlist">
-        <li ng-repeat="m in range(1, 11)">
-        <li><button class="button team-btn" type="button" value="{{activeTeam + m}}" id="{{activeTeam + m}}">
-        Hello</button></li>
-        </ol>
-        </div>-->
-
+      <div class="six columns">
       <ol class="teamlist">
+        <li><h5>Players</h5></li>
         <li><button class="button team-btn" type="button" id="6">Hello</button></li>
         <li><button class="button team-btn" type="button" id="7">Hello</button></li>
         <li><button class="button team-btn" type="button" id="8">Hello</button></li>

@@ -46,7 +46,7 @@
 <div class="container">
   <section>
     <div class="jumbotron">
-      <p>Player Information</p>
+      <p><i class="fa fa-street-view fa-lg gap"></i>Player Stats</p>
     </div>
     <div class="jumbotron status" id="status">
       <p></p>
@@ -54,15 +54,32 @@
   </section>
 </div>
 
-<!-- PAGE SPECIFIC -->
-
 <!-- Containers -->
   <div class="container teams">
-      <div class ="row" ng-controller="myC">
+      <div class ="row">
         <div class="twelve columns">
-        <button class="button team-btn" type="button" id="Buy">Buy</button> 
-        <div id="information"></div>
-      </div>
+        <h5 id="playername"></h5>
 
+        <table class="playerdata">
+          <tbody>
+              <tr><td><i class="fa fa-snowflake-o fa gap"></i>Wickets Taken</td>
+              <td id="playerwickets"></td></tr>
+              <tr><td><i class="fa fa-industry fa gap"></i>Economy Rate:</td>
+              <td id="playerecon"></td></tr>
+              <tr><td><i class="fa fa-thumbs-down fa gap"></i>Runs Conceded:</td>
+              <td id="playerrunsconceded"></td></tr>              
+              <tr><td><i class="fa fa-thumbs-up fa gap"></i>Runs Scored:</td>
+              <td id="playerrunsscored"></td></tr>
+              <tr><td><i class="fa fa-flash fa gap"></i>Strike Rate:</td>
+              <td id="playerstrike"></td></tr>
+              <tr><td><i class="fa fa-trophy fa gap"></i>Points in Last Match:</td>
+              <td id="playerlastpoints"></td></tr> 
+          </tbody>
+          </table>          
+      
+        <button class="button buy-btn" type="button" id="Buy"><i class="fa fa-money fa gap"></i>Buy for <span id="playerprice"></span></button> 
+      </div>
+    </div>
+    </div>
 </body>
 </html>

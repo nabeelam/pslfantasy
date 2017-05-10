@@ -313,7 +313,7 @@ io.sockets.on('connection', socket => {
 		}
 		find_one_in_db('User', item, function(user) {
 			if(user === null) {
-				socket.emit('login_error', 'incorrect username or password')
+				socket.emit('login_error', 'Whoops. Username and password don\'t match.')
 			} else {	
 				user_list[socket] = user
 				console.log(user.points + ' are the points')
@@ -328,7 +328,7 @@ io.sockets.on('connection', socket => {
 		arr = data.split(',')
 		console.log(data)
 		if(arr[0].length < 5 || arr[1].length < 5) {
-			socket.emit('signup_error', 'both fields must be at least 5 characters')	
+			socket.emit('signup_error', 'Try a longer username or password (at least 5 characters).')	
 			return
 		}
 		var item = {
@@ -337,7 +337,7 @@ io.sockets.on('connection', socket => {
 		}
 		find_one_in_db('User', item, function(user) {
 			if(user !== null) {
-				socket.emit('signup_error', 'username already taken')	
+				socket.emit('signup_error', 'Username is taken. Try another one!')	
 			} else {	
 				var item = {
 					handle : arr[0],
@@ -454,10 +454,10 @@ io.sockets.on('connection', socket => {
 				strike_rate = strike_rate.toFixed(1);
 			}
 			strike_rate = strike_rate * 100
-			data = p.name + ':price ' +	doc.price + ':wickets taken ' + doc.wickets
-			data += ':Economy rate '+ econ + ':runs conceded ' + doc.runs_conceded
-			data += ':runs scored ' + doc.runs_scored + ':strike_rate ' + strike_rate
-			data += ':points earned in last match played ' + doc.points
+			data = p.name + ':' + doc.price + ':' + doc.wickets
+			data += ':'+ econ + ':' + doc.runs_conceded
+			data += ':' + doc.runs_scored + ':' + strike_rate
+			data += ':' + doc.points
 			socket.emit('player_info', data)
 		})	
 	}) 		
@@ -487,7 +487,7 @@ io.sockets.on('connection', socket => {
 			points : -1
 		}
 		find_all_in_db('User', item, srt, function(doc) {
-			data += doc.handle + ' '
+			data += doc.handle + ':'
 			data += doc.points.toFixed(1) + '|'
 		}, function() {
 			socket.emit('points_table', data)
@@ -519,9 +519,9 @@ io.sockets.on('connection', socket => {
 				modify_in_db('User', item, change, () => {})
 				socket.emit('redirect', '/view_info.jade')
 			} else if(price > budget) {
-				socket.emit('could not buy', 'price less than budget')
+				socket.emit('could not buy', 'This player is beyond your budget right now.')
 			} else {
-				socket.emit('could not buy', 'you already own this player')				
+				socket.emit('could not buy', 'You already own this player.')				
 			}
 		})
 	})

@@ -8,7 +8,8 @@ $(() => {
 		console.log(data)
 		arr = data.split('|')
 		for(i = 0; i < arr.length - 1; i++) {
-			$('#pt').append('<hr/>' + (i + 1) + '. ' + arr[i])
+			cur = arr[i].split(':')
+			$('#pt').append('<tr><td>' + cur[0] + '</td><td>' + cur[1] + '</td>')
 		}
 	})
 	$('#PersonalInfo').click(() => {

@@ -1,32 +1,49 @@
 body {
   /*background-image: url('../images/back.png');*/
   background-color: #344;
+  background-image: linear-gradient(90deg, transparent 50%, rgb(51,66,68) 50%);
+  background-size: 20px 50px;
   color: #ddd;
 }
 
-/*colors*/
-/*443344*/
-/*4f484f*/
-/*344*/
+input[type=password]{
+  color: black;
+}
+
+input[type=text]{
+  color: black;
+}
+
+input[type=text]:focus{
+  background-color: #eee;
+  color: black;
+}
+
+input[type=password]:focus{
+  background-color: #eee;
+  color: black;
+}
 
 .button {
-  border-radius: 0px; /*curve*/
-  margin-right: 2rem;
+  border-radius: 10px; /*curve*/
 }
 
 .button.team-btn {
-  width: 200px;
-  text-align: left;
+  width: 20em;
+  margin: 0em;
+  text-align: center;
   background-color: #443344;
   color: #ddd;
-  font-size: 0.8em;
-  border-radius: 0px;
+  font-size: 0.7em;
+  border-radius: 0.5em;
   border-color: #434;
 }
 
 .button.team-btn:hover {
+  margin: 0em;
   background-color: #443344;
   color: #fff;
+  font-weight: bold;
   border-color: #434;
 }
 
@@ -41,22 +58,35 @@ body {
   border-color: #434;
 }
 
-.button.plyr-btn:hover {
-  background-color: #443344;
-  color: #fff;
+.button.buy-btn {
+  width: 180px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  text-align: center;
+  border-radius: 0px;
+  background-color: #434;
+  color: #ddd;
+  font-size: 0.8em;
   border-color: #434;
 }
 
 /*NAVBAR*/
 nav.primary{
   display: table;
-  position: sticky;
+  text-align: center;
+  width: 100%;
+  position: relative;
   top: 0;
-  background: #4f484f;
-  margin: 10 auto;
+  bottom: 0;
+  background-color: #4f484f;
+  color: #ddd;
+  margin: 0 auto;
 }
 
 nav.primary ul, nav.primary ul li {
+  list-style: none;
+  display: inline;
+  padding: 0;
   margin: 0px;
 }
 
@@ -64,86 +94,91 @@ nav.primary select {
   display: none;
   width:  100%;
   height: 28px;
-  margin: 21px 0;
+  margin: 0px 0;
 }
 
 nav.primary ul li {
-  display: inline;
+  display: block;
   float: left;
   position: relative;
 }
 
 nav.primary ul li a {
-  display: inline-block;
-  line-height: 56px;
-  padding:  0 14px;
+  line-height: 50px;
+  padding:  0 20px;
+  display: block;
   color: white;
   text-transform: uppercase;
   text-decoration: none;
   font-weight: bold;
   letter-spacing: 0.08em;
-  background: ##ccc;
+  text-align: center;
 }
 
 nav.primary ul li a:hover {
   background: #443344;
   cursor: pointer;
-  font-weight: bold;
 }
 
 /*Jumbotron*/
 
 .jumbotron{
   background-color: #434;
-  height: 150px;
   /*border: 1px solid #ccc;*/
+  margin: 0 0;
+  padding: 10px;
+  padding-top: 40px;
 }
 
 .jumbotron.shiny{
-  background-color: #434;
-  height: 150px;
+  /*background-color: #434;*/
+  height: auto;
+  padding-bottom: 40px;
   margin-bottom: 0;
-  /*border: 1px solid #ccc;*/
+}
+
+.jumbotron.shiny p{
+  /*background-color: #434;*/
+  height: auto;
+  margin-bottom: 0;
+  line-height: 0px;
 }
 
 .jumbotron.status{
   margin: 0rem;
-  background-color: #344;
-  background-image: url('../images/back.png');
-  height: 80px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  background-color: #434;
+  padding-bottom: 40px;
+  /*background-image: url('../images/back.png');*/
 }
 
 .jumbotron p{
   text-align: center;
   font-size: 2em;
   color: #eee;
-  line-height: 150px;
+  /*line-height: 150px;*/
+  padding-bottom: 40px;
+}
+
+.jumbotron.help{
+  font-size: 1em;
+  color: #ddd;
 }
 
 /*Container*/
-.featured{
-  margin-top: 20px;
-  /*background: #444;*/
-  margin-bottom: 20px;
-  text-align: center;
-}
-.featured h2{
-  margin-top: 20px;
-  font-weight: normal;
-}
-.featured p{
-  padding: 20px 0px;
-  margin-bottom: 0;
-}
-
 .teams{
-  padding-top: 20px;
+  margin: 0 auto;
+  padding-top: 1em;
   background: #4f484f;
-  text-align: left;
+  text-align: center;
 }
 
 .teamlist{
+  margin: 0 auto;
   list-style: none outside none;
+  text-align: center;
 }
 
 .profile{
@@ -151,13 +186,44 @@ nav.primary ul li a:hover {
   padding: 5px; 
 }
 
-.pic img{
-  width: 30%;
-  margin: auto;
-  display: block;
-  align-content: center;
+.gap 
+{
+  margin-right: 2rem;
+}
+.allgap 
+{
+  margin: 3rem;
 }
 
-.login {
+.userdata {
+  font-weight: bold;
+  color: #ddd;
+  text-align: center;
+  margin-left: 40%;
+}
+
+/*Player*/
+#information{
+  margin-bottom: 30px;
+}
+
+#playername{
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.playerdata{
+  text-align: center;
+  margin: auto;
+}
+
+table, td {
+  border: 0px solid #434;
+  margin: 4px 4px;
+  padding: 1.2rem;
+}
+
+.logsign {
+  background-color: #434;
   text-align: center;
 }

@@ -30,7 +30,7 @@
 <!-- Navigation -->
   <div class="band navigation">
       <nav class="container primary">
-          <div class="sixteen columns">
+          <div class="twelve columns">
               <ul>
                   <li><a href="profile.html" id="PersonalInfo"><i class="fa fa-home"></i></a></li>
                   <li><a href="buy.html" id="BuyingPortal">Buy</a></li>
@@ -46,7 +46,7 @@
 <div class="container">
   <section>
     <div class="jumbotron">
-      <p>Your Profile</p>
+      <p><i class="fa fa-vcard fa-lg gap"></i>Your Profile</p>
     </div>
   </section>
 </div>
@@ -55,16 +55,12 @@
 
 <!-- Containers -->
   <div class="container teams">
-      <div class ="row" ng-controller="myC">
-      <div class="six columns pic">
-      <!-- <img src="images/user.png"> -->
+      <div class="row userdata">
+        <div class="twelve columns" style="margin-right: 25%; text-align: left">
+              <h5 id="handle"></h5>
+              <h5 id="points"></h5>
+              <h5 id="budget"></h5>
+        </div>
       </div>
-      <div class="six columns">
-        <div class="profile handle" id="handle"></div>
-        <div class="profile" id="budget"></div>
-        <div class="profile" id="points"></div>
-        <div class="profile" id="players"></div>
-      </div>
-
 </body>
 </html>
