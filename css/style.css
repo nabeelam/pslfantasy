@@ -1,5 +1,6 @@
 body {
-  background-image: url('../images/back.png');
+  /*background-image: url('../images/back.png');*/
+  background-color: #344;
   color: #ddd;
 }
 
@@ -107,6 +108,7 @@ nav.primary ul li a:hover {
 
 .jumbotron.status{
   margin: 0rem;
+  background-color: #344;
   background-image: url('../images/back.png');
   height: 80px;
 }
