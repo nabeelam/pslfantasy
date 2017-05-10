@@ -10,9 +10,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/skeleton.css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="icon" type="image/png" href="../images/favicon.png">
   <script src="https://use.fontawesome.com/84b8e3cd0c.js"></script>
 
@@ -22,31 +22,21 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="login.js"></script>
 
-
 </head>
 
 <body ng-app="myPSL">
 
 <!-- Navigation -->
-  <div class="band navigation">
-      <nav class="container primary">
-          <div class="sixteen columns">
-              <ul>
-                  <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-                  <li><a href="views/buy.html">Buy/Sell</a></li>
-                  <li><a href="views/browse.html">Browse Players</a></li>
-                  <li><a href="views/table.html">League Table</a></li>
-              </ul>
-          </div>
-      </nav>
-  </div>
 
 <!-- Jumbotron -->
 <div class="container">
   <section>
-    <div class="jumbotron">
+    <div class="jumbotron shiny">
       <p>Login or Register</p>
     </div>
+    <div class="jumbotron status" id="status">
+      <p></p>
+    </div>    
   </section>
 </div>
 
@@ -57,10 +47,10 @@
     <div class ="row">
     <div class="twelve columns">
           <form>
-        <input class="team-in u-half-width" type="text" placeholder="your username">
-        <input class="team-in u-half-width" type="password" placeholder="your strong password">
-        <input class="team-in button team-btn" type="submit" id="signIn" value="LOGIN">
-        <input class="team-in button team-btn" type="submit" id="signUp" value="Register">  
+        <input class="team-in u-half-width" type="text" id="username" placeholder="your username">
+        <input class="team-in u-half-width" type="password" id="pass" placeholder="your strong password">
+        <input class="team-in button team-btn" id="signIn" value="LOGIN">
+        <input class="team-in button team-btn" id="signUp" value="Register">  
     </form>
     </div>
   </div>

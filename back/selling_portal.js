@@ -10,15 +10,17 @@ $(() => {
 		plyrL = []
 		i = 0		
 		for (let j = 1; j < d.length; j++) {
-			move('m' + i + (j - 1), d[j])
+			move('m' + j, d[j])
 			plyrL.push(d[j])
 		}
-		move('m' + i, d[0])			
-		for (let j = 0; j < 11; j++) {
-			a = '#m' + i + j
+		for(let j = plyrL.length; j <= 11; j++) {
+			document.getElementById('m' + j).style.display = 'none';
+		}
+		move('handle', d[0])			
+		for (let j = 1; j < d.length; j++) {
+			a = '#m' + j 
 			$(a).click(() => {
-				console.log("tried to sell " + plyrL[j])
-				socketio.emit('tried_to_sell', plyrL[j])
+				socketio.emit('tried_to_sell', plyrL[j - 1])
 			})
 		}
 	})
@@ -33,12 +35,14 @@ $(() => {
 	});
 	$('#PointsTable').click(() => {
 		socketio.emit('points_table', '')
-	});					
+	});	
+	$('#SellingPortal').click(() => {
+		socketio.emit('selling_portal', '')
+	});						
 	socketio.on('Sold', data => {
 		i = 0
 		j = find_in_ls(plyrL, data)
-		console.log(j)
-		move('m' + i + j, 'Sold')
+		move('m' + (j + 1), 'Sold')
 	})
 	function move(i, x) {
 		console.log(i, x)

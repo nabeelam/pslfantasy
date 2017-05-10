@@ -8,10 +8,6 @@ body {
 /*4f484f*/
 /*344*/
 
-.u-half-width {
-  width: 30%;
-}
-
 .button {
   border-radius: 0px; /*curve*/
   margin-right: 2rem;
@@ -132,14 +128,4 @@ nav.primary ul li a:hover {
 
 .teamlist{
   list-style: none outside none;
-}
-
-.login {
-  align-self: left;
-  margin: 5% 20%;
-}
-
-.team-in {
-  width: 15em;
-  border: 2px solid red;
 }

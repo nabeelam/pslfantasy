@@ -19,10 +19,13 @@ $(() => {
 	$('#BuyingPortal').click(() => {
 		socketio.emit('buying_portal', '')
 	});		
-	$('#SellingPortal').click(() => {
-		socketio.emit('selling_portal', '')
-	});		
+	$('#FixRes').click(() => {
+		socketio.emit('fixtures_and_results', '')
+	});
 	$('#PointsTable').click(() => {
 		socketio.emit('points_table', '')
+	});	
+	$('#SellingPortal').click(() => {
+		socketio.emit('selling_portal', '')
 	});		
 })

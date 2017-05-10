@@ -15,6 +15,21 @@ $(() => {
 	socketio.on('could not buy', data => {
 		$('#information').append('<hr/>' + data)
 	})
+	$('#PersonalInfo').click(() => {
+		socketio.emit('view-info', '')
+	});	
+	$('#BuyingPortal').click(() => {
+		socketio.emit('buying_portal', '')
+	});		
+	$('#FixRes').click(() => {
+		socketio.emit('fixtures_and_results', '')
+	});
+	$('#PointsTable').click(() => {
+		socketio.emit('points_table', '')
+	});	
+	$('#SellingPortal').click(() => {
+		socketio.emit('selling_portal', '')
+	});		
 	$('#Buy').click(() => {
 		socketio.emit('tried_to_buy', player)
 	})

@@ -208,8 +208,11 @@ function update_stats_player(data) {
 populate_teams()
 
 const server = http.createServer((request, response) => {
+	console.log(request.url)
 	if(request.url.slice(-4) === '.css') {
         fs.readFile(request.url.slice(1), 'utf-8', (err, data) => response.end(data))		
+    } else if(request.url.slice(-4) === '.png') {
+        fs.readFile('../daniyal/' + request.url.slice, 'utf-8', (err, data) => response.end(data))		
     } else if (request.url === '/signup.js') {
         fs.readFile('signup.js', 'utf-8', (err, data) => response.end(data))
     } if (request.url === '/login.js') {
@@ -229,22 +232,16 @@ const server = http.createServer((request, response) => {
 	}  else if (request.url === '/app.js') {
         fs.readFile('app.js', 'utf-8', (err, data) => response.end(data))    	 
 	} else if(request.url === '/view_info.jade') {
-        fs.readFile('view_info.jade', 'utf-8', (err, data) => {
-            response.end(jade.compile(data)())
-        })    	
+        fs.readFile('profile.html', 'utf-8', (err, data) => response.end(data))    	
     } else if(request.url === '/buying_portal.jade') {
         // fs.readFile('buying_portal.jade', 'utf-8', (err, data) => {
         //     response.end(jade.compile(data)())
         // })
         fs.readFile('buy.html', 'utf-8', (err, data) => response.end(data))    	
     } else if(request.url === '/selling_portal.jade') {
-        fs.readFile('selling_portal.jade', 'utf-8', (err, data) => {
-            response.end(jade.compile(data)())
-        })
+        	fs.readFile('sell.html', 'utf-8', (err, data) => response.end(data))    	
     } else if(request.url.substring(0, 13) === '/player_info_') {
-        fs.readFile('player_info.jade', 'utf-8', (err, data) => {
-            response.end(jade.compile(data)())		
-		})
+        	fs.readFile('player.html', 'utf-8', (err, data) => response.end(data))    		
     } else if(request.url === '/fixtures_and_results.jade') {
     	console.log('Sent fixtures_and_results')
         fs.readFile('fixtures_and_results.jade', 'utf-8', (err, data) => {
@@ -266,7 +263,7 @@ const server = http.createServer((request, response) => {
         // fs.readFile('login.jade', 'utf-8', (err, data) => {
         //     response.end(jade.compile(data)())
         // })
-        fs.readFile('mainpage.html', 'utf-8', (err, data) => response.end(data))    	
+        fs.readFile('login.html', 'utf-8', (err, data) => response.end(data))    	
     }
 })
 
@@ -322,7 +319,7 @@ io.sockets.on('connection', socket => {
 		}
 		find_one_in_db('User', item, function(user) {
 			if(user === null) {
-				socket.emit('redirect', '/-')	
+				socket.emit('login_error', 'incorrect username or password')
 			} else {	
 				user_list[socket] = user
 				console.log(user.points + ' are the points')
