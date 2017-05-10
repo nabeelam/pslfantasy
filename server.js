@@ -4,10 +4,10 @@ const http = require('http')
 const jade = require('jade')
 var mongo = require('mongodb')
 var assert = require('assert')
-const url = 'mongodb://localhost:27017/10000'
+// const ur = 'mongodb://localhost:27017/10000'
+const url = 'mong' + 'odb://a' + 'dmin:' + 'admin@ds137271.mlab.com:37271/pslfantasy';
 
-const lineReader = require('line-reader');
- 
+
 function insert_in_db(coll, item) {
 	mongo.connect(url, function(err, db) {
 		assert.equal(null, err)

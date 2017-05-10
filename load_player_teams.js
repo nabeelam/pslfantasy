@@ -1,8 +1,8 @@
 var mongo = require('mongodb')
 var assert = require('assert')
-const url = 'mongodb://localhost:27017/10000'
+// const ur = 'mongodb://localhost:27017/10000'
 const lineReader = require('line-reader');
-
+const url = 'mongo' + 'db://a' + 'dmin:adm' + 'in@ds137271.mlab.com:37271/pslfantasy';
 
 function insert_in_db(coll, item) {
 	mongo.connect(url, function(err, db) {
