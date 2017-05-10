@@ -1,16 +1,21 @@
 # PSL Fantasy League
 
-Developed in completion of coursework for CS 360, Software Engineering, by Dr. Suleman Shahid at the Lahore University of Management Sciences.
+Developed in fulfilment of coursework for CS 360, Software Engineering, by Dr. Suleman Shahid at the Lahore University of Management Sciences.
 
 PSL Fantasy League is our modest implementation of a fantasy cricket league, in particular the Pakistan Super League. It runs as a client-server interaction in nodeJS.
 
 # Features
-* User Signup and Login
-* Data Scraping from ESPN (via Selenium)
-* Buying and Selling Portal
-* Upcoming Fixtures
-* Sorted League table
 
+PSLFantasy has the following high-level features:
+* User Signup and Login,
+* Data Scraping from ESPN (via Selenium),
+* Buying and Selling Portal,
+* Player Information and Statistics,
+* Upcoming Fixtures,
+* League Table, sorted by score.
+
+## Data Scraper
+The data scraper is developed in Selenium WebDriver, which can be installed from [here](http://seleniumhq.org). We write a scraper in its Python bindings, which pulls match data from ESPN and updates ```matches.txt```.
 
 # Getting Started
 
@@ -107,7 +112,7 @@ This project is licensed under the MIT License.
 
 ### Acknowledgments
 
-* Advisor: Dr. Suleman Shahid
-* Teaching Assistant: Shahroze Tariq
-* CS 360 Course Staff
+* Advisor: Dr. Suleman Shahid,
+* Teaching Assistant: Shahroze Tariq, and 
+* The CS 360 Course Staff.
 
