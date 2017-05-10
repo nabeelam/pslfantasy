@@ -127,5 +127,7 @@ nav.primary ul li a:hover {
 }
 
 .teamlist{
+  text-align: 
   list-style: none outside none;
+  align-items: center;
 }
