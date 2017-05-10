@@ -144,11 +144,19 @@ nav.primary ul li a:hover {
   list-style: none outside none;
 }
 
+.profile{
+  text-align: center;
+  padding: 5px; 
+}
+
+.pic img{
+  width: 30%;
+  margin: auto;
+  display: block;
+  align-content: center;
+}
+
 .login {
   text-align: center;
 }
 
-input[type=username]{
-  margin: auto;
-  color: #000;
-}
