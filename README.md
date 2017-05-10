@@ -28,7 +28,7 @@ These instructions will help you set up **PSLFantasy** and join our online playe
 
 **PSLfantasy** runs on ```nodeJS``` [(install)](https://nodejs.org/en/download/) with the additional modules below. You can install these via ```npm```, the standard package manager. 
 
-**Modules to install:**
+*Modules to install:*
 ```
 socket.io
 mongoDB
@@ -36,7 +36,7 @@ jade
 line-reader
 ```
 
-**Modules that come built-in:**
+*Modules that come built-in:*
 ```
 fs
 http
@@ -44,9 +44,7 @@ http
 
 ### Installing
 
-First, install ```nodeJS```[(install)](https://nodejs.org/en/download/).
-
-Next, install the modules above by running ```npm install <module>``` for each. 
+First, install ```nodeJS``` [here](https://nodejs.org/en/download/). Then install the modules above by running ```npm install <module>``` for each. 
 
 For example, to install **socket.io**, run this in your terminal:
 ```
