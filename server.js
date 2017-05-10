@@ -208,11 +208,13 @@ function update_stats_player(data) {
 populate_teams()
 
 const server = http.createServer((request, response) => {
-	console.log(request.url)
 	if(request.url.slice(-4) === '.css') {
         fs.readFile(request.url.slice(1), 'utf-8', (err, data) => response.end(data))		
     } else if(request.url.slice(-4) === '.png') {
-        fs.readFile('../daniyal/' + request.url.slice, 'utf-8', (err, data) => response.end(data))		
+        fs.readFile(request.url.slice(1), 'utf-8', function(err, data) {
+        	console.log(data)
+            response.end(data)
+        })		
     } else if (request.url === '/signup.js') {
         fs.readFile('signup.js', 'utf-8', (err, data) => response.end(data))
     } if (request.url === '/login.js') {
@@ -234,24 +236,16 @@ const server = http.createServer((request, response) => {
 	} else if(request.url === '/view_info.jade') {
         fs.readFile('profile.html', 'utf-8', (err, data) => response.end(data))    	
     } else if(request.url === '/buying_portal.jade') {
-        // fs.readFile('buying_portal.jade', 'utf-8', (err, data) => {
-        //     response.end(jade.compile(data)())
-        // })
         fs.readFile('buy.html', 'utf-8', (err, data) => response.end(data))    	
     } else if(request.url === '/selling_portal.jade') {
         	fs.readFile('sell.html', 'utf-8', (err, data) => response.end(data))    	
     } else if(request.url.substring(0, 13) === '/player_info_') {
         	fs.readFile('player.html', 'utf-8', (err, data) => response.end(data))    		
     } else if(request.url === '/fixtures_and_results.jade') {
-    	console.log('Sent fixtures_and_results')
-        fs.readFile('fixtures_and_results.jade', 'utf-8', (err, data) => {
-            response.end(jade.compile(data)())
-        })
+        	fs.readFile('fixtures.html', 'utf-8', (err, data) => response.end(data))    		
     } else if(request.url === '/points_table.jade') {
-    	console.log('Sent points_table')
-        fs.readFile('points_table.jade', 'utf-8', (err, data) => {
-            response.end(jade.compile(data)())
-        })
+    		console.log('got it')
+        	fs.readFile('table.html', 'utf-8', (err, data) => response.end(data))    		
     } else if(request.url === '/commentary.jade') {
         fs.readFile('commentary.jade', 'utf-8', (err, data) => {
             response.end(jade.compile(data)())
@@ -333,8 +327,8 @@ io.sockets.on('connection', socket => {
 	socket.on('sign_up', data => {
 		arr = data.split(',')
 		console.log(data)
-		if(arr[0].length < 5 || arr[1].length < 5 || arr[2].length < 5 || arr[3].length < 5) {
-			socket.emit('signup_error', 'all four fields are required and must be at least 5 characters')	
+		if(arr[0].length < 5 || arr[1].length < 5) {
+			socket.emit('signup_error', 'both fields must be at least 5 characters')	
 			return
 		}
 		var item = {
@@ -395,10 +389,9 @@ io.sockets.on('connection', socket => {
 		if(check(socket))
 			return	
 		data = ''
-		data += 'handle is ' + user_list[socket].handle + ':'
-		data += 'Budget is ' + user_list[socket].Budget + ':'
-		data += 'Points are ' + user_list[socket].points.toFixed(1) + ':'
-		data += ':owned players are :'
+		data += user_list[socket].handle + ':'
+		data += user_list[socket].Budget + ':'
+		data += user_list[socket].points.toFixed(1) + ':'
 		item = {
 			user : user_list[socket].handle
 		}
@@ -443,9 +436,7 @@ io.sockets.on('connection', socket => {
 		if(check(socket))
 			return
 		arr = data.split('_')
-		console.log(arr)
 		team = teams[Number(arr[0])]
-		console.log(team.name)
 		p = team.players[Number(arr[1])]
 		item = {
 			player : p.name
@@ -496,7 +487,7 @@ io.sockets.on('connection', socket => {
 			points : -1
 		}
 		find_all_in_db('User', item, srt, function(doc) {
-			data += 'User ' + doc.handle + ' '
+			data += doc.handle + ' '
 			data += doc.points.toFixed(1) + '|'
 		}, function() {
 			socket.emit('points_table', data)

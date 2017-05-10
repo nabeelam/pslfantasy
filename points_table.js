@@ -7,8 +7,8 @@ $(() => {
 	socketio.on('points_table', data => {
 		console.log(data)
 		arr = data.split('|')
-		for(i = 0; i < arr.length; i++) {
-			$('#pt').append('<hr/>' + arr[i])
+		for(i = 0; i < arr.length - 1; i++) {
+			$('#pt').append('<hr/>' + (i + 1) + '. ' + arr[i])
 		}
 	})
 	$('#PersonalInfo').click(() => {

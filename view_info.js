@@ -5,11 +5,14 @@ $(() => {
 	    window.location.href = destination;
 	});
 	socketio.on('user-info', data => {
-		console.log(data)
 		arr = data.split(':')
-		for(i = 0; i < arr.length; i++) {
-			$('#info').append('<hr/>' + arr[i])
-		}
+		$('#handle').html(arr[0])
+		$('#budget').html(arr[1])
+		$('#points').html(arr[2])
+		for(i = 3; i < arr.length; i++) {
+			console.log(arr[i])
+			$('#players').append(arr[i] + '</br>')
+		}		
 	});	
 	$('#PersonalInfo').click(() => {
 		socketio.emit('view-info', '')

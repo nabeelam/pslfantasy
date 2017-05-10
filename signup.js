@@ -5,10 +5,9 @@ $(() => {
 	});
 	socketio.on('signup_error', function(data) {
 		console.log(data)
-		$('#loginpage').append('<hr/>' + data)
+		$('#status').html('<hr/>' + data)
 	});
 	$('#signUp').click(() => {
-		socketio.emit('sign_up', $('#username').val() + ',' + $('#passwordI').val() + ',' +
-			$('#firstname').val() + ',' + $('#lastname').val())
+		socketio.emit('sign_up', $('#username').val() + ',' + $('#pass').val())
 	});
 })

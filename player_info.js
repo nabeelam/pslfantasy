@@ -13,7 +13,7 @@ $(() => {
 		}
 	})	
 	socketio.on('could not buy', data => {
-		$('#information').append('<hr/>' + data)
+		$('#status').html('<hr/>' + data)
 	})
 	$('#PersonalInfo').click(() => {
 		socketio.emit('view-info', '')
